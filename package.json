@@ -4,13 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "eleventy --serve",
-    "build": "eleventy"
+    "dev:tailwind": "tailwindcss -i ./public/styles.css -o ./public/styles.out.css --watch",
+    "dev:eleventy": "eleventy --serve",
+    "build-dev:tailwind": "tailwindcss -i ./public/styles.css -o ./public/styles.out.css",
+    "dev": "pnpm run build-dev:tailwind && pnpm run dev:eleventy & pnpm run dev:tailwind",
+    "build": "eleventy && tailwindcss -i ./public/styles.css -o ./dist/styles.css --minify",
+    "clean": "rm -rf dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@11ty/eleventy": "^2.0.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.13"
   }
 }
